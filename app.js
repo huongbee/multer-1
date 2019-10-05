@@ -33,3 +33,12 @@ app.post('/upload', (req, res) => {
         res.send({ file: req.file })
     })
 })
+let sum = 0;
+function loop(sum) {
+    for (let i = 1; i <= 10; ++i) {
+        sum += i;
+    }
+    return sum;
+}
+loop(sum);
+console.log(sum)
