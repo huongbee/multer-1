@@ -12,7 +12,14 @@ const storage = multer.diskStorage({
         cb(null, `${Date.now()}-${file.originalname}`)
     }
 })
-const upload = multer({ storage })
+function fileFilter(req, file, cb) {
+    if (file.mimetype != 'image/gif' && file.mimetype != 'image/jpeg' && file.mimetype != 'image/png') {
+        //return cb(null, false);
+        return cb(new Error('File not allow!'))
+    }
+    cb(null, true);
+}
+const upload = multer({ storage, fileFilter })
 
 app.get('/', (req, res) => {
     res.render('upload');
