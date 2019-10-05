@@ -19,7 +19,7 @@ function fileFilter(req, file, cb) {
     }
     cb(null, true);
 }
-const upload = multer({ storage, fileFilter })
+const upload = multer({ storage, fileFilter, limits: 1024 * 1024 })
 
 app.get('/', (req, res) => {
     res.render('upload');
