@@ -25,6 +25,11 @@ app.get('/', (req, res) => {
     res.render('upload');
 })
 
-app.post('/upload', upload.single('avatar'), (req, res) => {
-    res.send({ file: req.file })
+app.post('/upload', (req, res) => {
+    upload.single('avatar')(req, res, error => {
+        if (error) {
+            return res.send(error.message)
+        }
+        res.send({ file: req.file })
+    })
 })
